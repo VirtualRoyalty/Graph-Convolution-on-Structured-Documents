@@ -97,9 +97,9 @@ class Adjacency(Layer):
         adj_2 = self._learn_adjacencies(adj_2, node_vec)
 
         # flatten
-        adj_0 = tf.reshape(adj_0, [-1])
-        adj_1 = tf.reshape(adj_1, [-1])
-        adj_2 = tf.reshape(adj_2, [-1])
+        adj_0 = tf.reshape(adj_0, shape=(adj_0.shape[0], 1))
+        adj_1 = tf.reshape(adj_1, shape=(adj_1.shape[0], 1))
+        adj_2 = tf.reshape(adj_2, shape=(adj_2.shape[0], 1))
 
         # forward pass
         adj_0 = tf.matmul(self.w0_1, adj_0 )
