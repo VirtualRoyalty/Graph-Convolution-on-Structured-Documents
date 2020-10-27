@@ -123,7 +123,8 @@ class Adjacency(Layer):
         adj_2 = tf.reshape(adj_2, shape)
 
         return [adj_0, adj_1, adj_2]
-
+        
+    @tf.function
     def _learn_adjacencies(self, adj, node_vec):
 
         '''
