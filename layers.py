@@ -123,7 +123,7 @@ class Adjacency(Layer):
         adj_2 = tf.reshape(adj_2, shape)
 
         return [adj_0, adj_1, adj_2]
-        
+
     @tf.function
     def _learn_adjacencies(self, adj, node_vec):
 
@@ -134,19 +134,27 @@ class Adjacency(Layer):
             if adj_ij == 1, new_adj_ig = |node_vec_i - node_vec_j|
         '''
         # init the output adjacency matrix to zeros
-        new_adj = tf.zeros_like(adj, dtype=tf.float32)
+        # new_adj = tf.zeros_like(adj, dtype=tf.float32)
 
-        for ik, i in enumerate(adj):
-            # iterate columns
-            for jk,j in enumerate(i):
-                adj_ij = j
-
-                if adj_ij == 0:
-                    new_adj[ik,jk] = 0
-
-                elif adj_ij == 1:
-                    new_adj[ik,jk] = tf.norm(node_vec[ik] - node_vec[jk])
-
+        # for ik, i in enumerate(adj):
+        #     # iterate columns
+        #     for jk,j in enumerate(i):
+        #         adj_ij = j
+        #
+        #         if adj_ij == 0:
+        #             new_adj[ik,jk] = 0
+        #
+        #         elif adj_ij == 1:
+        #             new_adj[ik,jk] = tf.norm(node_vec[ik] - node_vec[jk])
+        print(node_vec.shape)
+        c = tf.repeat(node_vec, repeats=[node_vec.shape[0]]*node_vec.shape[0], axis=0)
+        d = tf.repeat(tf.reshape(node_vec,
+                        shape=(1, node_vec.shape[0], node_vec.shape[1])),
+                        repeats=[node_vec.shape[0]], axis=0)
+        d = tf.reshape(d, shape=(node_vec.shape[0] * node_vec.shape[0], node_vec.shape[1]))
+        norm = tf.norm(d - c, axis=1)
+        norm = tf.reshape(norm, shape=(node_vec.shape[0], node_vec.shape[0]))
+        new_adj = tf.math.multiply(adj, norm)
         return new_adj
 
     def compute_output_shape(self, input_shape=[(1, 50, 50), (1, 50, 50),
