@@ -73,15 +73,15 @@ class Adjacency(Layer):
 
         # the following assertions assume that each adjacency matrix in the
         # list has the same shape
-        assert adj_list[0].shape[0] == self.w0_1.shape[0], f'The number of rows \
-            of the adjacency matrix and weight matrix does not match. /n\
-                Adjacency Shape: {adj_list[0].shape}\nWeight Matrix Shape: \
-                    {self.w0_1.shape}.'
-
-        assert adj_list[0].shape[0] == self.w0_1.shape[1], f'The number of \
-            columns of the adjacency matrix and weight matrix does not match./n\
-                Adjacency Shape: {adj_list[0].shape}\nWeight Matrix Shape: \
-                    {self.w0_1.shape}.'
+        # assert adj_list[0].shape[0] == self.w0_1.shape[0], f'The number of rows \
+        #     of the adjacency matrix and weight matrix does not match. /n\
+        #         Adjacency Shape: {adj_list[0].shape}\nWeight Matrix Shape: \
+        #             {self.w0_1.shape}.'
+        #
+        # assert adj_list[0].shape[0] == self.w0_1.shape[1], f'The number of \
+        #     columns of the adjacency matrix and weight matrix does not match./n\
+        #         Adjacency Shape: {adj_list[0].shape}\nWeight Matrix Shape: \
+        #             {self.w0_1.shape}.'
 
         # remove singleton dimensions
         adj_0 = tf.squeeze(adj_list[0])
