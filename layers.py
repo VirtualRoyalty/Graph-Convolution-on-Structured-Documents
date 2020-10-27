@@ -75,12 +75,12 @@ class Adjacency(Layer):
         # list has the same shape
         assert adj_list[0].shape[0] == self.w0_1.shape[0], f'The number of rows \
             of the adjacency matrix and weight matrix does not match. /n\
-                Adjacency Shape: {adj.shape}\nWeight Matrix Shape: \
+                Adjacency Shape: {adj_list[0].shape}\nWeight Matrix Shape: \
                     {self.w0_1.shape}.'
 
         assert adj_list[0].shape[0] == self.w0_1.shape[1], f'The number of \
             columns of the adjacency matrix and weight matrix does not match./n\
-                Adjacency Shape: {adj.shape}\nWeight Matrix Shape: \
+                Adjacency Shape: {adj_list[0].shape}\nWeight Matrix Shape: \
                     {self.w0_1.shape}.'
 
         # remove singleton dimensions
