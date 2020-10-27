@@ -6,7 +6,7 @@ import tensorflow
 from tensorflow.keras.utils import plot_model
 # import keras
 
-tensorflow.enable_eager_execution()
+# tensorflow.enable_eager_execution()
 
 ######################## model logic ##########################################
 
